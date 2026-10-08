@@ -1,122 +1,102 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import Cabecalho from "./components/Cabecalho";
+import CardCurso from "./components/CardCurso";
+import Destaque from "./components/Destaque";
+import Rodape from "./components/Rodape";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const cursos = [
+    {
+      nome: "Desenvolvimento de Sistemas",
+      duracao: "1200 horas",
+      modalidade: "Presencial",
+      nivel: "Técnico",
+      vagas: 12
+    },
+    {
+      nome: "Redes de Computadores",
+      duracao: "1000 horas",
+      modalidade: "Presencial",
+      nivel: "Técnico",
+      vagas: 8
+    },
+    {
+      nome: "Manutenção de Computadores",
+      duracao: "800 horas",
+      modalidade: "Presencial",
+      nivel: "Técnico",
+      vagas: 5
+    },
+    {
+      nome: "Programação Web",
+      duracao: "900 horas",
+      modalidade: "Online",
+      nivel: "Qualificação",
+      vagas: 15
+    },
+    {
+      nome: "Banco de Dados",
+      duracao: "700 horas",
+      modalidade: "Online",
+      nivel: "Qualificação",
+      vagas: 0
+    },
+    {
+      nome: "Desenvolvimento Mobile",
+      duracao: "950 horas",
+      modalidade: "Híbrida",
+      nivel: "Técnico",
+      vagas: 10
+    }
+  ];
 
   return (
     <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+      <Cabecalho />
 
-      <div className="ticks"></div>
+      <main>
+        <section className="cursos">
+          <h2>Nossos Cursos</h2>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+          <div className="lista-cursos">
+            {cursos.map((curso) => (
+              <CardCurso
+                key={curso.nome}
+                nome={curso.nome}
+                duracao={curso.duracao}
+                modalidade={curso.modalidade}
+                nivel={curso.nivel}
+                vagas={curso.vagas}
+              />
+            ))}
+          </div>
+        </section>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
+        <section className="destaques">
+          <h2>Por que estudar tecnologia?</h2>
+
+          <div className="lista-destaques">
+            <Destaque
+              titulo="Aprenda fazendo"
+              texto="Desenvolva projetos durante sua formação e coloque seus conhecimentos em prática."
+            />
+
+            <Destaque
+              titulo="Prepare-se para o mercado"
+              texto="Adquira conhecimentos e habilidades importantes para atuar na área de tecnologia."
+            />
+
+            <Destaque
+              titulo="Construa seu futuro"
+              texto="Escolha uma área de tecnologia e comece a desenvolver sua carreira profissional."
+            />
+          </div>
+        </section>
+      </main>
+
+      <Rodape />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
